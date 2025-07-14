@@ -1,0 +1,197 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #121212;
+  --card-bg: #f3f3f3;
+  --button-bg: #d32f2f;
+  --button-hover: #b71c1c;
+  --select-bg: #e0e0e0;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+  --card-bg: #1e1e1e;
+  --button-bg: #ff0000;
+  --button-hover: #ff0000;
+  --select-bg: #2c2c2c;
+}
+
+/* General Layout */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  width: 320px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  color: #FF0000;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Settings */
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--card-bg);
+  padding: 12px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-label {
+  font-size: 0.95rem;
+}
+
+.dropdown-label {
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+select {
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--select-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Video Preview */
+.video-preview {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.video-preview h2 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+#videoList {
+  list-style-type: none;
+  font-size: 0.9rem;
+}
+
+#videoList li {
+  background-color: var(--select-bg);
+  padding: 6px;
+  border-radius: 5px;
+  margin-bottom: 6px;
+}
+
+/* Clear Button */
+.clear-btn {
+  background-color: var(--button-bg);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: var(--button-hover);
+}
+
+/* Toggle Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #FF0000;
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+.slider.round {
+  border-radius: 24px;
+}
+.custom-time {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.custom-time input {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: var(--select-bg);
+  color: var(--text-color);
+}
+
+.custom-time button {
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-time button:hover {
+  background-color: var(--button-hover);
+}

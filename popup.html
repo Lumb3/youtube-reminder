@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Watch Later Reminder</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">⏰ YouTube Watch Later Reminder</h1>
+
+    <section class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider round"></span>
+      </label>
+      <span class="toggle-label">Dark Mode</span>
+    </section>
+
+    <section class="settings">
+      <label class="switch">
+        <input type="checkbox" id="reminderToggle" />
+        <span class="slider round"></span>
+      </label>
+      <span class="toggle-label">Enable Reminders</span>
+
+      <label for="interval" class="dropdown-label">Remind me every:</label>
+      <select id="interval">
+        <option value="15">15 minutes</option>
+        <option value="30">30 minutes</option>
+        <option value="60">1 hour</option>
+        <option value="120">2 hours</option>
+      </select>
+      <div class="custom-time">
+        <label for="customTime">Or enter custom time (minutes):</label>
+        <input type="number" id="customTime" min="1" max="1440" placeholder="e.g. 45">
+        <button id="setCustomTime">Set Custom Time</button>
+      </div>
+    </section>
+
+    <section class="video-preview">
+      <h2>🔖 Bookmarked Videos</h2>
+      <ul id="videoList">
+        <li>No videos bookmarked yet.</li>
+      </ul>
+    </section>
+
+    <button id="clearAll" class="clear-btn">🗑 Clear All</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

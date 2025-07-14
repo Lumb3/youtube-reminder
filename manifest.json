@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Watch Later Reminder",
+  "description": "⏰ Get reminders for your YouTube Watch Later videos with customizable settings and dark mode.",
+  "version": "1.0",
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/icon.png",
+      "48": "assets/icon.png",
+      "128": "assets/icon.png"
+    },
+    "default_title": "Youtube Watch Later Reminder"
+  },
+  "permissions": ["storage", "notifications", "alarms", "tabs"],
+  "host_permissions": ["https://www.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
