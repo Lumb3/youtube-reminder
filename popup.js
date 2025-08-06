@@ -1,107 +1,82 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("search");
-  const videoList = document.getElementById("videoList");
-  const clearAllBtn = document.getElementById("clearAll");
+import { getCurrentTab } from "./utils.js";
 
-  // 🔧 Add this missing declaration
-  let videoReminders = {};
+function addVideoCard(video) {
+  const list = document.getElementById("videoList");
 
-  // Placeholder: list of sample videos
-  let videos = [
-    {
-      title: "How to learn JavaScript",
-      thumbnail: "https://img.youtube.com/vi/oHg5SJYRHA0/mqdefault.jpg",
-      timestamp: Date.now() - 3600000,
-    },
-    {
-      title: "Top 10 AI Projects",
-      thumbnail: "https://img.youtube.com/vi/2vjPBrBU-TM/mqdefault.jpg",
-      timestamp: Date.now() - 86400000,
-    },
-  ];
+  const li = document.createElement("li");
+  li.className = "video-card";
 
-  function timeAgo(ts) {
-    const diff = Date.now() - ts;
-    const minutes = Math.floor(diff / 60000);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    if (days > 0) return `Bookmarked ${days} day(s) ago`;
-    if (hours > 0) return `Bookmarked ${hours} hour(s) ago`;
-    return `Bookmarked ${minutes} min(s) ago`;
-  }
+  li.innerHTML = `
+    <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="Thumbnail" />
+    <div class="video-info">
+      <p class="title">${video.title}</p>
+      <span class="time-ago">${video.timeAgo}</span>
+    </div>
+    <button class="remind-btn">⏰</button>
+  `;
 
-  function renderList(filter = "") {
-    videoList.innerHTML = "";
-    videos
-      .filter((video) =>
-        video.title.toLowerCase().includes(filter.toLowerCase())
-      )
-      .forEach((video) => {
-        const li = document.createElement("li");
-        li.className = "video-card";
+  const remindBtn = li.querySelector(".remind-btn");
+  remindBtn.addEventListener("click", () => {
+    const isActive = remindBtn.classList.toggle("active-reminder");
 
-        const isActive = videoReminders[video.title]?.active;
-        const remindClass = isActive ? "active-reminder" : "";
+    if (isActive) {
+      remindBtn.title = "Reminder active";
+      const newTime = prompt("Set repetition (e.g., every 1h, daily):", video.repetition || "daily");
+      if (newTime) {
+        video.repetition = newTime;
+      }
+    } else {
+      remindBtn.title = "Reminder off";
+    }
 
-        li.innerHTML = `
-        <img src="${video.thumbnail}" alt="Thumbnail" />
-        <div class="video-info">
-          <p class="title">${video.title}</p>
-          <span class="time-ago">${timeAgo(video.timestamp)}</span>
-        </div>
-        <button class="remind-btn ${remindClass}">⏰</button>
-      `;
+    console.log(`Reminder for "${video.title}": ${isActive ? "ON" : "OFF"}, Repeats: ${video.repetition || "N/A"}`);
+  });
 
-        const remindBtn = li.querySelector(".remind-btn");
-        remindBtn.addEventListener("click", () => {
-          showReminderMenu(video.title, remindBtn);
-        });
+  list.appendChild(li);
+}
 
-        videoList.appendChild(li);
-      });
-  }
-  function showReminderMenu(title, buttonEl) {
-    const current = videoReminders[title] || { active: false, interval: null };
+document.addEventListener("DOMContentLoaded", async () => {
+  const errorEl = document.querySelector(".error");
+  console.log("popup.js loaded ✅");
+  try {
+    const currentTab = await getCurrentTab();
 
-    const input = prompt(
-      current.active
-        ? `Reminder is active.\nCurrent interval: ${current.interval} mins\n\nEnter new interval in minutes (or leave blank to turn OFF):`
-        : `Set a reminder for "${title}".\nEnter interval in minutes:`,
-      current.active ? current.interval : "60"
-    );
-
-    if (input === null) return; // Cancelled
-
-    if (input.trim() === "") {
-      // Turn OFF reminder
-      videoReminders[title] = { active: false, interval: null };
-      buttonEl.classList.remove("active-reminder");
-      alert(`Reminder turned OFF for "${title}"`);
+    if (!currentTab || !currentTab.url) {
+      console.log("Tab or URL not found");
+      if (errorEl) errorEl.textContent = "Could not get the current tab.";
       return;
     }
 
-    const mins = parseInt(input);
-    if (isNaN(mins) || mins <= 0) {
-      alert("Invalid number. Please enter a positive number.");
+    console.log("Current Tab URL:", currentTab.url);
+
+    const isYoutubeVideo = currentTab.url.includes("youtube.com/watch");
+    let currentVideoId = null;
+
+    if (isYoutubeVideo) {
+      const queryParams = new URLSearchParams(currentTab.url.split("?")[1]);
+      currentVideoId = queryParams.get("v");
+    }
+
+    if (!isYoutubeVideo || !currentVideoId) {
+      console.log("Not a YouTube video page");
+      if (errorEl) errorEl.textContent = "This is not a YouTube video page.";
       return;
     }
 
-    // Turn ON reminder
-    videoReminders[title] = { active: true, interval: mins };
-    buttonEl.classList.add("active-reminder");
-    alert(`Reminder set every ${mins} min(s) for "${title}"`);
+    const demoVideo = {
+      id: currentVideoId,
+      title: "Video you're watching now",
+      timeAgo: "Just now",
+      repetition: null
+    };
+
+    addVideoCard(demoVideo);
+  } catch (err) {
+    console.error("Error getting tab:", err);
+    if (errorEl) errorEl.textContent = "Something went wrong.";
   }
+});
 
-  searchInput.addEventListener("input", (e) => {
-    renderList(e.target.value);
-  });
-
-  clearAllBtn.addEventListener("click", () => {
-    if (confirm("Clear all bookmarked videos?")) {
-      videos = [];
-      renderList();
-    }
-  });
-
-  renderList();
+document.getElementById("clearAll").addEventListener("click", () => {
+  document.getElementById("videoList").innerHTML = "";
 });

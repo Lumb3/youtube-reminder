@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Watch Later Reminder</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -14,22 +16,16 @@
     </header>
 
     <ul id="videoList" class="video-list">
-      <!-- Dynamic video list goes here -->
-      <!-- Example video card -->
-      <li class="video-card">
-        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg" alt="Thumbnail" />
-        <div class="video-info">
-          <p class="title">Sample Video Title</p>
-          <span class="time-ago">Bookmarked 2 hours ago</span>
-        </div>
-        <button class="remind-btn">⏰</button>
-      </li>
+      <!-- Videos will be injected here dynamically -->
     </ul>
 
     <footer>
       <button id="clearAll">🗑️ Clear All</button>
     </footer>
+    <p class="error" style="color: red; text-align: center;"></p>
   </div>
-  <script src="popup.js"></script>
+
 </body>
+<script type="module" src="popup.js"></script>
+
 </html>
