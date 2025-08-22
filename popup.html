@@ -2,30 +2,45 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Watch Later Reminder</title>
-  <link rel="stylesheet" href="popup.css" />
+  <meta charset="UTF-8">
+  <title>Youtube Reminder</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
   <div class="container">
-    <header>
-      <h1>YouTube Reminders</h1>
-      <input type="text" id="search" placeholder="Search videos..." />
-    </header>
+    <h1>Your Bookmarks</h1>
 
-    <ul id="videoList" class="video-list">
-      <!-- Videos will be injected here dynamically -->
-    </ul>
+    <!-- Video List -->
+    <div id="video-list">
+      <div class="video-item">
+        <a href="https://youtube.com/watch?v=abc123" target="_blank">📺 Video 1</a>
+        <button class="remove-btn">✖</button>
+      </div>
+      <div class="video-item">
+        <a href="https://youtube.com/watch?v=xyz456" target="_blank">📺 Video 2</a>
+        <button class="remove-btn">✖</button>
+      </div>
+    </div>
 
-    <footer>
-      <button id="clearAll">🗑️ Clear All</button>
-    </footer>
-    <p class="error" style="color: red; text-align: center;"></p>
+    <p class="hint">Videos you bookmark will appear here.</p>
+
+    <!-- Notification Settings -->
+    <div class="settings">
+      <h2>🔔 Notifications</h2>
+      <label for="frequency">Frequency:</label>
+      <select id="frequency">
+        <option value="off">Off</option>
+        <option value="15">Every 15 minutes</option>
+        <option value="30">Every 30 minutes</option>
+        <option value="60">Every hour</option>
+        <option value="1440">Daily</option>
+      </select>
+
+      <button id="saveSettings">Save</button>
+    </div>
   </div>
-
+  <script type="module" src="popup.js"></script>
 </body>
-<script type="module" src="popup.js"></script>
 
 </html>

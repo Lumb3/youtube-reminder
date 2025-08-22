@@ -1,120 +1,105 @@
 body {
+  font-family: Arial, sans-serif;
+  width: 320px;
+  padding: 15px;
+  background: #f9f9f9;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0f0f0f;
-  color: #ccffcc;
-  width: 360px;
-  height: 500px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  padding: 10px;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 h1 {
-  font-size: 20px;
-  margin: 0;
+  font-size: 18px;
   text-align: center;
-  color: #aaffaa;
+  margin: 0;
 }
 
-#search {
-  padding: 8px;
-  border: none;
-  border-radius: 6px;
-  background-color: #1a1a1a;
-  color: #ccffcc;
-  font-size: 14px;
-}
-
-.video-list {
-  flex: 1;
+#video-list {
+  max-height: 180px;
   overflow-y: auto;
-  list-style: none;
-  padding: 0;
-  margin: 10px 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 5px;
 }
 
-.video-card {
+.video-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  background-color: #1e1e1e;
-  padding: 8px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  transition: background 0.3s;
+  padding: 6px;
+  border-bottom: 1px solid #eee;
 }
 
-.video-card:hover {
-  background-color: #292929;
+.video-item:last-child {
+  border-bottom: none;
 }
 
-.video-card img {
-  width: 60px;
-  height: 45px;
-  border-radius: 6px;
-  margin-right: 10px;
-}
-
-.video-info {
-  flex: 1;
-}
-
-.title {
+.video-item a {
+  text-decoration: none;
+  color: #0056b3;
   font-size: 14px;
-  margin: 0 0 4px;
-  color: #d4ffd4;
+  flex-grow: 1;
 }
 
-.time-ago {
+.remove-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #e63939;
+}
+
+.hint {
   font-size: 12px;
-  color: #88cc88;
+  text-align: center;
+  color: #666;
 }
 
-.remind-btn {
-  background: none;
-  border: 1px solid #44cc44;
-  color: #aaffaa;
-  padding: 5px 8px;
+/* Notification Settings */
+.settings {
+  background: #fff;
+  border: 1px solid #ddd;
   border-radius: 6px;
+  padding: 10px;
+}
+
+.settings h2 {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+label {
+  font-size: 14px;
+}
+
+select {
+  width: 100%;
+  padding: 6px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#saveSettings {
+  width: 100%;
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
-.remind-btn:hover {
-  background-color: #264d26;
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  padding-top: 8px;
-}
-
-#clearAll {
-  background-color: transparent;
-  border: 1px solid #ff6666;
-  color: #ffaaaa;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-#clearAll:hover {
-  background-color: #4d1a1a;
-}
-.active-reminder {
-  border-color: #66ff66;
-  background-color: #1e3b1e;
-  box-shadow: 0 0 6px #66ff66;
+#saveSettings:hover {
+  background: #43a047;
 }
