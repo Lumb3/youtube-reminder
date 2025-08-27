@@ -2,8 +2,7 @@
   let youtubePlayer;
   let curentVideo = "";
   let currentBookmarkedVideos = [];
-  
-  
+  let v = "";
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "NEW_BOOKMARK") {
