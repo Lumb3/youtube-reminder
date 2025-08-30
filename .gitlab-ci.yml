@@ -1,0 +1,64 @@
+stages:
+  - install
+  - lint
+  - test
+  - build
+  - package
+  - deploy
+
+variables:
+  NODE_ENV: production
+
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: install
+  image: node:20
+  script:
+    - npm ci
+
+lint:
+  stage: lint
+  image: node:20
+  script:
+    - npm run lint
+    - npm run prettier:check
+
+test:
+  stage: test
+  image: node:20
+  script:
+    - npm test
+
+build:
+  stage: build
+  image: node:20
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+
+package:
+  stage: package
+  image: node:20
+  script:
+    - zip -r extension.zip dist/
+  artifacts:
+    paths:
+      - extension.zip
+
+deploy:
+  stage: deploy
+  image: node:20
+  only:
+    - main
+  script:
+    - npx chrome-webstore-upload upload \
+        --source dist/ \
+        --extension-id $EXTENSION_ID \
+        --client-id $CLIENT_ID \
+        --client-secret $CLIENT_SECRET \
+        --refresh-token $REFRESH_TOKEN
