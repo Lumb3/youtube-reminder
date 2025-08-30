@@ -1,4 +1,4 @@
 # pipeline stages
 stages:
   - install
-  
+  - update
