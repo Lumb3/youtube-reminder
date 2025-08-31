@@ -8,6 +8,7 @@ validate-manifest:
   stage: validate
   image: node:18
   script:
+    - apt-get update && apt-get install -y jq
     - echo "Validating manifest.json..."
     - cat manifest.json | jq . > /dev/null # checks if JSON is valid
   only: # The job will only run when changes are pushed to the main branch
