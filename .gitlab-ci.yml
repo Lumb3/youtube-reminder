@@ -1,4 +1,28 @@
 # pipeline stages
 stages:
-  - install
-  - update
+  - validate
+  - build
+
+# Validate manifest.json
+validate-manifest:
+  stage: validate
+  image: node:18
+  script:
+    - echo "Validating manifest.json..."
+    - cat manifest.json | jq . > /dev/null # checks if JSON is valid
+  only: # The job will only run when changes are pushed to the main branch
+    - main
+
+# Build zip package
+build-extension:
+  stage: build
+  image: alpine:latest
+  script:
+    - mkdir -p dist
+    - zip -r dist/youtube-reminder.zip . # Recursively zip all of the files in the folder
+  artifacts:
+    paths:
+      - dist/youtube-reminder.zip
+    expire_in: "30 days"
+  only:
+    - main
