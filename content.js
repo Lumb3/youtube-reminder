@@ -1,26 +1,42 @@
 (() => {
-  // displays in youtube page
-  let youtubePlayer;
-  let curentVideo = "";
-  let currentBookmarkedVideos = [];
-  let v = "";
+  const addButtonToWatchLater = () => {
+    const items = document.querySelectorAll("ytd-playlist-video-renderer");
+    items.forEach((item) => {
+      if (item.querySelector(".yt-reminder-btn")) return; // avoid duplicates
 
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === "NEW_BOOKMARK") {
-      console.log("Content script received video ID:", message.videoID);
+      const btn = document.createElement("img");
+      btn.src = chrome.runtime.getURL("assets/add-bookmark.png");
+      btn.className = "yt-reminder-btn";
+      btn.title = "Click to get notification on this video"
+      btn.style.cursor = "pointer";
+      btn.style.width = "24px";
+      btn.style.marginLeft = "10px";
 
-      // Example: show a little UI injection (like a "Bookmark this video" button)
-      let btn = document.getElementById("yt-bookmark-btn");
-      if (!btn) {
-        btn = document.createElement("button");
-        btn.id = "yt-bookmark-btn";
-        btn.textContent = "🔖 Add Reminder";
-        btn.style.position = "absolute";
-        btn.style.top = "100px";
-        btn.style.right = "20px";
-        btn.style.zIndex = 9999;
-        document.body.appendChild(btn);
+      // Add behind video title
+      const titleRow = item.querySelector("#meta");
+      if (titleRow) {
+        titleRow.appendChild(btn);
       }
-    }
-  });
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const link = item.querySelector("a#thumbnail"); // get the thumbnail
+        const videoUrl = link?.href;  // get the url
+        const videoId = new URL(videoUrl).searchParams.get("v");
+        const thumbnail = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+
+        chrome.runtime.sendMessage({
+          type: "SAVE_BOOKMARK",
+          video: { id: videoId, url: videoUrl, thumbnail, frequency: 30 } // default 30 min
+        });
+      });
+    });
+  };
+
+  // Observe page changes (YouTube uses dynamic loading)
+  const observer = new MutationObserver(addButtonToWatchLater);
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  addButtonToWatchLater();
 })();

@@ -1,45 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>Youtube Reminder</title>
+  <title>YouTube Reminders</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
-  <div class="container">
-    <h1>Your Bookmarks</h1>
-
-    <!-- Video List -->
-    <div id="video-list">
-      <div class="video-item">
-        <a href="https://youtube.com/watch?v=abc123" target="_blank">📺 Video 1</a>
-        <button class="remove-btn">✖</button>
-      </div>
-      <div class="video-item">
-        <a href="https://youtube.com/watch?v=xyz456" target="_blank">📺 Video 2</a>
-        <button class="remove-btn">✖</button>
-      </div>
-    </div>
-
-    <p class="hint">Videos you bookmark will appear here.</p>
-
-    <!-- Notification Settings -->
-    <div class="settings">
-      <h2>🔔 Notifications</h2>
-      <label for="frequency">Frequency:</label>
-      <select id="frequency">
-        <option value="off">Off</option>
-        <option value="15">Every 15 minutes</option>
-        <option value="30">Every 30 minutes</option>
-        <option value="60">Every hour</option>
-        <option value="1440">Daily</option>
-      </select>
-
-      <button id="saveSettings">Save</button>
-    </div>
-  </div>
+  <h3>Your Bookmarked Videos</h3>
+  <div id="video-list"></div>
   <script type="module" src="popup.js"></script>
 </body>
 
