@@ -1,72 +1,119 @@
+/* --- Base --- */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
   margin: 0;
-  padding: 12px;
-  width: 300px;
-  background-color: #f9f9f9;
-  color: #333;
+  padding: 16px;
+  width: 320px;
+  background-color: #f0f2f5;
+  color: #1c1c1c;
 }
 
+/* --- Header --- */
 h3 {
-  font-size: 16px;
-  margin-bottom: 12px;
+  font-size: 18px;
+  margin-bottom: 16px;
   text-align: center;
-  color: #202020;
+  color: #111;
+  font-weight: 600;
 }
 
+/* --- Video List --- */
 #video-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-height: 400px;
+  gap: 12px;
+  max-height: 450px;
   overflow-y: auto;
+  padding-right: 4px;
 }
 
+/* --- Video Card --- */
 .video {
   display: flex;
   align-items: center;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 6px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
-  transition: transform 0.2s;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .video:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
+/* --- Thumbnail --- */
 .video img {
-  width: 80px;
-  height: 60px;
+  width: 90px;
+  height: 56px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
+/* --- Video Info --- */
+.video-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 12px;
+  flex-grow: 1;
+}
+
+/* Video title */
+.video-info p {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Frequency dropdown */
 .video select {
-  margin-left: auto;
-  padding: 3px 6px;
-  border-radius: 4px;
+  width: 80px;
+  padding: 4px 6px;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  background: #fafafa;
+  background-color: #fafafa;
   font-size: 13px;
+  outline: none;
 }
 
+/* Remove button */
 .video button {
-  background: #ff4c4c;
+  background-color: #ff5c5c;
   border: none;
   color: white;
-  border-radius: 4px;
-  padding: 4px 6px;
-  margin-left: 6px;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin-left: 8px;
   cursor: pointer;
   font-size: 12px;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
 
 .video button:hover {
-  background: #d93b3b;
+  background-color: #e04e4e;
+  transform: scale(1.05);
+}
+
+/* Scrollbar (for modern look) */
+#video-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#video-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#video-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
 }

@@ -15,7 +15,7 @@
       // Add behind video title
       const titleRow = item.querySelector("#meta");
       if (titleRow) {
-        titleRow.appendChild(btn);
+        titleRow.append(btn);
       }
 
       btn.addEventListener("click", (e) => {
@@ -24,11 +24,13 @@
         const link = item.querySelector("a#thumbnail"); // get the thumbnail
         const videoUrl = link?.href;  // get the url
         const videoId = new URL(videoUrl).searchParams.get("v");
+        const titleEl = item.querySelector("#video-title");
+        const videoTitle = titleEl?.textContent.trim() || "Untitled video";
         const thumbnail = `https://img.youtube.com/vi/${videoId}/0.jpg`;
 
         chrome.runtime.sendMessage({
           type: "SAVE_BOOKMARK",
-          video: { id: videoId, url: videoUrl, thumbnail, frequency: 30 } // default 30 min
+          video: { id: videoId, url: videoUrl, thumbnail, title: videoTitle, frequency: 30 } // default 30 min
         });
       });
     });
