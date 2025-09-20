@@ -1,4 +1,4 @@
-// background.js
+// background.js 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "SAVE_BOOKMARK") {
     chrome.storage.sync.get(["bookmarks"], (data) => {
@@ -39,24 +39,19 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   }
 });
 
-// --- Helper to create/update alarm ---
+
 function setVideoAlarm(video) {
-  // Clear old alarm first
   chrome.alarms.clear("watch_reminder_" + video.id, () => {
-    // Use seconds for 1 sec testing
-    let delay, period;
-    if (video.frequency === 0.0167) {
-      // Change test frequency to 6 seconds = 0.1 minutes
-      delay = 0.1;
-      period = 0.1;
-    } else {
-      delay = video.frequency;
-      period = video.frequency;
+    const delayInMinutes = video.frequency;
+
+    const alarmInfo = { delayInMinutes: delayInMinutes };
+    // Chrome requires periodInMinutes >= 1
+    if (delayInMinutes >= 1) {
+      alarmInfo.periodInMinutes = delayInMinutes;
     }
 
-    chrome.alarms.create("watch_reminder_" + video.id, {
-      delayInMinutes: delay,
-      periodInMinutes: period,
-    });
+    chrome.alarms.create("watch_reminder_" + video.id, alarmInfo);
+
+    console.log(`Alarm set for ${video.title} after ${delayInMinutes} min`);
   });
 }
