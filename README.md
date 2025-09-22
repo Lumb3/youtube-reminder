@@ -38,7 +38,7 @@ Or download the project folder directly to your device.
 Voila! The extension is now installed.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/9702729a-816f-402b-ac02-e8aeaa81d4a3" width="800" />
+  <img src="https://github.com/user-attachments/assets/9702729a-816f-402b-ac02-e8aeaa81d4a3" width="600" />
 </p>
 
 ### 3. **Extension icon**
@@ -56,7 +56,7 @@ You will see a rings icon on the extension bar.
 Open the Watch Later section. Press the yellow bookmark button to add the current video to the extension:
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/323a255f-fb2c-4512-804f-83a61ba85bb0" width="800" />
+  <img src="https://github.com/user-attachments/assets/323a255f-fb2c-4512-804f-83a61ba85bb0" width="600" />
 </p>
 
 ### 5. **Adjust notification frequency**
@@ -64,7 +64,7 @@ Open the Watch Later section. Press the yellow bookmark button to add the curren
 Set how often the extension should remind you:
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4b50e88e-f6d3-450d-aba6-f313bb343cbc" width="400" />
+  <img src="https://github.com/user-attachments/assets/4b50e88e-f6d3-450d-aba6-f313bb343cbc" width="600" />
 </p>
 
 ### 6. **Notification appearance**
@@ -72,7 +72,7 @@ Set how often the extension should remind you:
 Notifications appear after the selected frequency and persist until dismissed:
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2b839b4a-ba44-4473-9735-fe493b3ab9da" width="400" />
+  <img src="https://github.com/user-attachments/assets/2b839b4a-ba44-4473-9735-fe493b3ab9da" width="600" />
 </p>
 
 ---
