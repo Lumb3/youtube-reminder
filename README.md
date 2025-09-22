@@ -59,9 +59,9 @@ Open the Watch Later section. Press the yellow bookmark button to add the curren
   <img src="https://github.com/user-attachments/assets/323a255f-fb2c-4512-804f-83a61ba85bb0" width="600" />
 </p>
 
-### 5. **Adjust notification frequency**
+### 5. **Adjust notification frequency and connect to the video**
 
-Set how often the extension should remind you to watch the video
+Set how often the extension should remind you to watch the video. You can also click the video's thumbnail in the extension to go directly to the video.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/4b50e88e-f6d3-450d-aba6-f313bb343cbc" width="600" />
