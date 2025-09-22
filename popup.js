@@ -48,8 +48,8 @@ function createVideoElement(video) {
 
   // Frequency dropdown
   const select = document.createElement("select");
-  [0.1, 5, 10, 30, 60].forEach((min) => {
-    // 0.1 = 6 seconds for testing
+  [1, 5, 10, 30, 60].forEach((min) => {
+    // 1 min
     const opt = document.createElement("option");
     if (min === 0.1) opt.textContent = "6 sec (test)";
     else opt.textContent = `${min} min`;

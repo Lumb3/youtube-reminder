@@ -69,7 +69,7 @@
           url: videoUrl, 
           thumbnail, 
           title: videoTitle, 
-          frequency: 0.1 // default 30 min
+          frequency: 1
         }
       });
     });
