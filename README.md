@@ -54,7 +54,7 @@ When you open the Watch Later section, you will see this interface. Press the ye
 </p>
 
 ### 6. **Notification appearance:**
-The notification will appear after the selected frequency period and continue until the user clicks the X in the extension:
+The notification will appear after the selected frequency period and continue until the user clicks the ❌ in the extension:
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/2b839b4a-ba44-4473-9735-fe493b3ab9da" width="400" />
